@@ -46,9 +46,10 @@
 // This file contains the interface to the initialization, startup and shutdown functions of the crypto library.
 // B.6.2. Includes and Locals
 #include "OsslCryptoEngine.h"
+
 static void Trap(const char *function, int line, int code);
 FAIL_FUNCTION TpmFailFunction = (FAIL_FUNCTION)&Trap;
-void
+static void
 TpmFail(
     const char *function,
     int line,

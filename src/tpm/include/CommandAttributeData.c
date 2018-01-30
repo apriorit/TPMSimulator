@@ -44,6 +44,9 @@
 
 // This is the command code attribute array for GetCapability(). Both this array and s_commandAttributes
 // provides command code attributes, but tuned for different purpose
+
+#include "TPM_Types.h"
+
 static const TPMA_CC s_ccAttr [] = {
     {0x011f, 0, 1, 0, 0, 2, 0, 0, 0},        // TPM_CC_NV_UndefineSpaceSpecial
     {0x0120, 0, 1, 0, 0, 2, 0, 0, 0},        // TPM_CC_EvictControl
