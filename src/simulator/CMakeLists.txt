@@ -6,5 +6,11 @@ file(GLOB_RECURSE PROVIDER_SOURCES "*.h" "*.c")
 
 add_executable(Simulator ${PROVIDER_SOURCES})
 
-target_link_libraries(Simulator TPM Ws2_32 Rpcrt4)
 target_include_directories(Simulator PRIVATE include)
+target_link_libraries(Simulator TPM)
+
+if(WIN32)
+	target_link_libraries(Simulator Ws2_32 Rpcrt4)
+else()
+	target_link_libraries(Simulator pthread)
+endif()
