@@ -128,6 +128,8 @@ SetForceFailureMode(
     g_forceFailureMode = TRUE;
     return;
 }
+/*
+Commented due to function name conflict on static linking
 void
 TpmFail(
     const char *function,
@@ -151,7 +153,7 @@ TpmFail(
     // Jump to the failure mode code.
     // Note: only get here if asserts are off or if we are testing failure mode
     longjmp(&g_jumpBuffer[0], 1);
-}
+}*/
 void
 TpmFailureMode (
     unsigned int inRequestSize,                     // IN: command buffer size

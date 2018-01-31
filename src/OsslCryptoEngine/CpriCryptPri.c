@@ -49,7 +49,7 @@
 
 static void Trap(const char *function, int line, int code);
 FAIL_FUNCTION TpmFailFunction = (FAIL_FUNCTION)&Trap;
-static void
+void
 TpmFail(
     const char *function,
     int line,
