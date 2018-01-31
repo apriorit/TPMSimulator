@@ -46,7 +46,7 @@
 #define _CPRICRYPTPRI_FP_H_
 
 void
-static TpmFail(
+TpmFail(
     const char *function,
     int line,
     int code);
