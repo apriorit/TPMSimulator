@@ -14,3 +14,7 @@ if(WIN32)
 else()
 	target_link_libraries(Simulator pthread)
 endif()
+
+if(MSVC)
+	target_compile_options(Simulator PRIVATE /wd4702 /wd4245 /wd4189)
+endif()
