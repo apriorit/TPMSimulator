@@ -124,21 +124,6 @@ main(
         }
     }
     _plat__NVEnable(NULL);
-    if(TPM_Manufacture(1) != 0)
-    {
-        exit(1);
-    }
-    // Coverage test - repeated manufacturing attempt
-    if(TPM_Manufacture(0) != 1)
-    {
-        exit(2);
-    }
-    // Coverage test - re-manufacturing
-    TPM_TearDown();
-    if(TPM_Manufacture(1) != 0)
-    {
-        exit(3);
-    }
     // Disable NV memory
     _plat__NVDisable();
 
