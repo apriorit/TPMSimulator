@@ -44,7 +44,18 @@
 
 #ifndef _CAPABILITIES_H
 #define _CAPABILITIES_H
-#define MAX_CAP_DATA (MAX_CAP_BUFFER-sizeof(TPM_CAP)-sizeof(UINT32))
+/*
+The size of the MAX_CAP_DATA was changed due to detected problems in interaction between simulator and WIndows 2012 R2
+system components.
+MAX_CAP_DATA is the buffer for data returned by TPM_CC_GetCapability command. The maximum size of a whole data which
+expected by the system is 1KB including TPM header and response header specific for the certain command. So, to avoid
+the overflow of returned data buffer, we should decrease the maximum size of the buffer which contains payload of
+TPM_CC_GetCapability response.
+Here are the meanings of the sizes to which the resulting value decreases:
+MAX_CAP_DATA = MAX_CAP_BUFFER (1KB) - command tag (0x8001 or 0x8002) - command code (32 bit 0x17a) - size of the
+payload (size of the next data in buffer) - TPM_CC_GetCapability command header - capability handles count.
+*/
+#define MAX_CAP_DATA (MAX_CAP_BUFFER-sizeof(TPMI_ST_COMMAND_TAG)-sizeof(TPM_CC)-sizeof(UINT32)-sizeof(TPM_CAP)-sizeof(UINT32))
 #define MAX_CAP_ALGS (ALG_LAST_VALUE - ALG_FIRST_VALUE + 1)
 #define MAX_CAP_HANDLES (MAX_CAP_DATA/sizeof(TPM_HANDLE))
 #define MAX_CAP_CC ((TPM_CC_LAST - TPM_CC_FIRST) + 1)
